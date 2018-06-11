@@ -21,6 +21,8 @@
             <div class="col-md-6">
                 <h2>${userAds.title}</h2>
                 <p>${userAds.description}</p>
+                <div><button class="btn-primary">EDIT</button>
+                <button class="btn-danger">DELETE</button></div>
             </div>
         </c:forEach>
     </div>
