@@ -12,15 +12,15 @@
 
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
-        <h1>${sessionScope.user.email}!</h1>
+
 
     </div>
 
     <div>
-        <c:forEach var="ad" items="${ads}">
+        <c:forEach var="userAds" items="${userAds}">
             <div class="col-md-6">
-                <h2>${ad.title}</h2>
-                <p>${ad.description}</p>
+                <h2>${userAds.title}</h2>
+                <p>${userAds.description}</p>
             </div>
         </c:forEach>
     </div>
