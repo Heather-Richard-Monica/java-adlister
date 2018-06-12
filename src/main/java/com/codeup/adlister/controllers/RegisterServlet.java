@@ -22,28 +22,38 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
+        request.getSession().setAttribute("username", username);
+
         // validate input
         boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+                || email.isEmpty()
+                || password.isEmpty()
+                || (!password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
             return;
         }
 
-        String nameCheck = DaoFactory.getUsersDao().findByUsername(username).getUsername();
+
+        try {
+            String nameCheck = DaoFactory.getUsersDao().findByUsername(username).getUsername();
+            if (nameCheck != null) {
+                String test = "That Username is not available. Please select another.";
 
 
-        if(nameCheck!=null){
-            response.sendRedirect("/register");
-            return;
-        }
+//            request.setAttribute("test",test);
+                response.sendRedirect("/register");
+                return;
+            }
+
+        } catch (NullPointerException e) {
+
 
         // create and save a new user
         User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
+    }
     }
 }
