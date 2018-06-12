@@ -23,13 +23,14 @@
                 <h2>${userAds.title}</h2>
                 <p>${userAds.description}</p>
                     <div>
-                        <a href="/edit">
+
                          <button class="btn-primary">EDIT</button>
-                        </a>
+
                         <form action="/delete" method="POST" value="${userAds.id}">
                             <button class="btn-danger" name="DELETE" value="${userAds.id}">
                                 DELETE
-                             </button></form>
+                             </button>
+                        </form>
                     </div>
                 </div>
         </c:forEach>
