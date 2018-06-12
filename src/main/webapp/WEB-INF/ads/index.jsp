@@ -26,11 +26,12 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
-    <h1 class="text-center mb-5">Here are all the ads!</h1>
+    <h1 class="text-center">Here are all the ads!</h1>
         <div class="row">
             <%--<div class="col-12">--%>
                 <c:forEach var="ad" items="${ads}">
-                    <div class="col-3 wrap-ad">
+                <div class="mb-2 col-lg-2 col-sm-6 text-center">
+                    <%--<div class="col-3 wrap-ad">--%>
                      <div class="card text-white bg-dark m-1" style="max-width: 30rem;">
                         <div class="card-header"><h2 class="text-white"><a href="/ads/show?id=${ad.id}">${ad.title}</a></h2></div>
                         <div class="card-body">
@@ -42,11 +43,6 @@
                 </c:forEach>
             <%--</div><!-- end of col-10 -->--%>
         </div><!-- end of row -->
-        <%--<div class="col-md-6">--%>
-
-            <%--<p>${ad.description}</p>--%>
-        <%--</div>--%>
-
 </div><!-- end of container-fluid -->
 </body>
 </html>
