@@ -8,6 +8,8 @@
             <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
             <li class="nav-item"><a class="nav-link" href="/ads/create">Create an Ad</a></li>
+            <li><a href="ads/search">Search Ads</a></li>
+
         </ul>
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

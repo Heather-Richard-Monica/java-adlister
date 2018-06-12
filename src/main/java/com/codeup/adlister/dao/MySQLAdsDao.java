@@ -70,6 +70,7 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+
     public Ad findById(long id) {
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
 
@@ -104,6 +105,23 @@ public class MySQLAdsDao implements Ads {
         }
         return null;
     }
+
+    @Override
+    public List<Ad> searchAds(String searchInput) {
+        System.out.println("searchInput = " + searchInput);
+        PreparedStatement pst = null;
+        try {
+
+            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
+            pst = connection.prepareStatement(sql);
+            pst.setString(1,"%" + searchInput + "%");
+            ResultSet rs = pst.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+    }
+
 }
 
 
