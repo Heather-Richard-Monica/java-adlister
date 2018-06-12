@@ -67,6 +67,20 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public Ad findAdByID(Long id) {
+        String query = "SELECT * FROM ads WHERE id =?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1,id);
+            ResultSet rs =stmt.executeQuery();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding Ad",e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
@@ -84,4 +98,22 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
-}
+    @Override
+    public void deleteAd(long id) {
+
+        String query = "DELETE FROM ads Where id = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+
+            stmt.executeUpdate();
+
+            System.out.println("Something is happening");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+
+
+    }}
