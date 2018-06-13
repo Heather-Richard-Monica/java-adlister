@@ -28,10 +28,14 @@ public class RegisterServlet extends HttpServlet {
                 || password.isEmpty()
                 || (!password.equals(passwordConfirmation));
 
-        if (inputHasErrors) {
-            response.sendRedirect("/register");
-            return;
-        }
+    if (inputHasErrors) {
+        request.getSession().setAttribute("uplaceholder",username);
+        request.getSession().setAttribute("uemail",email);
+
+
+        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        return;
+    }
 
 
         try {
@@ -43,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException w) {
 
         // create and save a new user btw: it is the catch
         User user = new User(username, email, password);
