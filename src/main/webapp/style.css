@@ -1,0 +1,10 @@
+body {
+    background-color: dimgray;
+}
+.card {
+    opacity: .7;
+    border-radius: 5%;
+    -webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;
+    box-shadow: 7px 6px 20px 5px #0A0A0A;
+    height: auto;
+}
