@@ -32,6 +32,8 @@ public class LoginServlet extends HttpServlet {
             String register = "<input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Register\">";
             request.setAttribute("message",message);
             request.setAttribute("register",register);
+            request.getSession().setAttribute("logname",username);
+            request.getSession().setAttribute("logpass",password);
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
             return;
         }
