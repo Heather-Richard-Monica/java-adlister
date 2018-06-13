@@ -22,14 +22,28 @@ public class CreateAdServlet extends HttpServlet {
             .forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = (User) request.getSession().getAttribute("user");
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
-            request.getParameter("description")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+            request.getParameter("description"));
+
+        boolean inputHasErrors = ad.getTitle().isEmpty()
+                || ad.getDescription().isEmpty();
+
+try {
+
+    if (inputHasErrors) {
+        String message = "Please ensure you have a Title and Description in your Ad.";
+        request.setAttribute("message",message);
+        request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+
+
+    }
+}catch (NullPointerException e) {
+    DaoFactory.getAdsDao().insert(ad);
+    response.sendRedirect("/ads");
+}
     }
 }
