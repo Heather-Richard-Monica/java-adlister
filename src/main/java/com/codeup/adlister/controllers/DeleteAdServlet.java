@@ -13,10 +13,14 @@ import java.io.IOException;
 public class DeleteAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+try {
+    Long id = Long.parseLong(request.getParameter("DELETE"));
+    DaoFactory.getAdsDao().deleteAd(id);
+    response.sendRedirect("/profile");
+} catch (NumberFormatException e){
 
-        Long id = Long.parseLong(request.getParameter("DELETE"));
-        DaoFactory.getAdsDao().deleteAd(id);
-        response.sendRedirect("/profile");
+    response.sendRedirect("profile");
+};
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
