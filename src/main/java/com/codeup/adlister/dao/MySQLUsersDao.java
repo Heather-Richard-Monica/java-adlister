@@ -36,6 +36,7 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+
     public User editUser(User user) {
         String query ="UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
         PreparedStatement stmt = null;

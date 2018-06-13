@@ -10,6 +10,7 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
+    <div class="row">
     <h1>You can edit your Profile here!</h1>
     <form action="/editprofile" method="post">
         <input type="hidden" value="${user.id}" name="id">
@@ -17,16 +18,20 @@
             <label for="username">Edit your Username</label>
             <input id="username" name="username" class="form-control" type="text" value="${user.username}">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-5">
             <label for="email">Edit your email</label>
             <input id="email" name="email" type="text" class="form-control" value="${user.email}">
         </div>
-        <div class="col-md-6">
-            <label for="password">Edit your password</label>
-            <input id="password" name="password" type="password" class="form-control" value="${user.password}">
+        <div class="col-md-6 submit">
+            <input type="submit" class="btn btn-primary btn-block mt-5 form-control">
         </div>
-        <input type="submit" class="btn btn-primary btn-block">
     </form>
+    </div><!-- end of row -->
+    <div class="row">
+    <h2>Change your password</h2>
+        <a href="/password" class="btn btn-primary btn-block">Change your password</a>
+    </div>
+
 </div>
 </body>
 </html>

@@ -16,8 +16,6 @@
             margin-top: 50px;
         }
 
-
-
     </style>
 </head>
 <body>
@@ -29,8 +27,8 @@
     <div class="row">
         <%--<div class="ml-5 col-lg-2 col-sm-6 d-flex">--%>
             <div class="col-sm-6 col-lg-2 mr-5">
-                <div class="card float-left" style="width: 20rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
+                <div class="card float-left text-center" style="width: 20rem;">
+                    <img class="card-img-top mx-auto d-block" src="/img/iconprofile.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

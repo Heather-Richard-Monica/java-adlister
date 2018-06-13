@@ -30,7 +30,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         user = DaoFactory.getUsersDao().findByUsername(oldUsername);
         user.setUsername(request.getParameter("username"));
         user.setEmail(request.getParameter("email"));
-        user.setPassword(request.getParameter("password"));
 
         DaoFactory.getUsersDao().editUser(user);
         response.sendRedirect("/profile");

@@ -8,3 +8,15 @@ body {
     box-shadow: 7px 6px 20px 5px #0A0A0A;
     height: auto;
 }
+
+.submit {
+    margin-top: 20px;
+}
+
+.card-img-top {
+    margin-top: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+}
