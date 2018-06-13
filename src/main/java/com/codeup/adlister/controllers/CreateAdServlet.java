@@ -40,9 +40,9 @@ try {
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
     }
 } catch (NullPointerException e) {
+}
     DaoFactory.getAdsDao().insert(ad);
     response.sendRedirect("/ads");
-}
 }
     }
 
