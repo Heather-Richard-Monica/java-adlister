@@ -37,7 +37,7 @@ public class MySQLUsersDao implements Users {
     }
 
     public User editUser(User user) {
-        String query ="UPDATE ads SET username = ?, email = ?, password = ? WHERE id = ?";
+        String query ="UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

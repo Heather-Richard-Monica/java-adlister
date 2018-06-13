@@ -25,14 +25,15 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 }
 
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    User user = (User)request.getSession().getAttribute("user");
-    user = DaoFactory.getUsersDao().findByUsername(request.getParameter("username"));
-    user.setUsername(request.getParameter("username"));
-    user.setEmail(request.getParameter("email"));
-    user.setPassword(request.getParameter("password"));
+        User user = (User)request.getSession().getAttribute("user");
+        String oldUsername = user.getUsername();
+        user = DaoFactory.getUsersDao().findByUsername(oldUsername);
+        user.setUsername(request.getParameter("username"));
+        user.setEmail(request.getParameter("email"));
+        user.setPassword(request.getParameter("password"));
 
-    DaoFactory.getUsersDao().editUser(user);
-    response.sendRedirect("/profile");
+        DaoFactory.getUsersDao().editUser(user);
+        response.sendRedirect("/profile");
 
 }
 

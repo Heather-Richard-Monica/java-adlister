@@ -19,11 +19,11 @@
         </div>
         <div class="col-md-6">
             <label for="email">Edit your email</label>
-            <input id="email" name="description" type="text" class="form-control" value="${user.email}">
+            <input id="email" name="email" type="text" class="form-control" value="${user.email}">
         </div>
         <div class="col-md-6">
             <label for="password">Edit your password</label>
-            <input id="password" name="password" type="text" class="form-control" value="${user.password}">
+            <input id="password" name="password" type="password" class="form-control" value="${user.password}">
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>
