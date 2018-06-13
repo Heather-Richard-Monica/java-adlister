@@ -32,18 +32,17 @@ public class CreateAdServlet extends HttpServlet {
         boolean inputHasErrors = ad.getTitle().isEmpty()
                 || ad.getDescription().isEmpty();
 
-try {
 
+try {
     if (inputHasErrors) {
         String message = "Please ensure you have a Title and Description in your Ad.";
-        request.setAttribute("message",message);
+        request.setAttribute("message", message);
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
-
-
     }
-}catch (NullPointerException e) {
+} catch (NullPointerException e) {
     DaoFactory.getAdsDao().insert(ad);
     response.sendRedirect("/ads");
 }
-    }
 }
+    }
+

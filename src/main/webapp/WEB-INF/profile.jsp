@@ -23,8 +23,9 @@
                 <h2>${userAds.title}</h2>
                 <p>${userAds.description}</p>
                     <div>
-
+                        <form action="/edit" method="GET" value="${userAds.id}">
                          <button class="btn-primary">EDIT</button>
+                        </form>
 
                         <form action="/delete" method="POST" value="${userAds.id}">
                             <button class="btn-danger" name="DELETE" value="${userAds.id}">
