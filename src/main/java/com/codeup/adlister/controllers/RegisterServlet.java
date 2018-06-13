@@ -39,9 +39,6 @@ public class RegisterServlet extends HttpServlet {
             if (nameCheck != null) {
                 String message = "That Username is not available. Please select another.";
                 request.setAttribute("message",message);
-
-
-//            request.setAttribute("test",test);
                 request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
                 return;
             }
