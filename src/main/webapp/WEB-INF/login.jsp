@@ -21,6 +21,10 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
+        <form action="/register" method="GET" >
+
+             ${register}
+        </form>
     </div>
 </body>
 </html>

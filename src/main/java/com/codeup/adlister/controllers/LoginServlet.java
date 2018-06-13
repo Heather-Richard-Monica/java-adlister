@@ -29,7 +29,9 @@ public class LoginServlet extends HttpServlet {
         if (user == null) {
 
             String message = "username or password incorrect";
+            String register = "<input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Register\">";
             request.setAttribute("message",message);
+            request.setAttribute("register",register);
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
             return;
         }
