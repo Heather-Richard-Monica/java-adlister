@@ -26,7 +26,7 @@
                 <h2>${userAds.title}</h2>
                 <p>${userAds.description}</p>
                     <div>
-                        <form action="/edit" method="GET" value="${userAds.id}">
+                        <form action="/ads/edit" method="POST" value="${userAds.id}" name="EDIT">
                          <button class="btn-primary">EDIT</button>
                         </form>
 
