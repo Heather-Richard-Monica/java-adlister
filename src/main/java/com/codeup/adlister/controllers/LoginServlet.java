@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("userId",user.getId());
-            response.sendRedirect("/profile");
+            response.sendRedirect("/profile");//this to variable based on user choice ${userChoice}
         } else {
             response.sendRedirect("/login");
         }
