@@ -17,6 +17,7 @@ public class MySQLAdsDao implements Ads {
                 config.getUrl(),
                 config.getUser(),
                 config.getPassword()
+
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -25,10 +26,10 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> all() {
-        PreparedStatement stmt = null;
+        String sql = "SELECT * FROM ads";
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
-            ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery(sql);
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
@@ -38,11 +39,13 @@ public class MySQLAdsDao implements Ads {
     @Override
     public Long insert(Ad ad) {
         try {
-            String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO ads(user_id, title, description, price) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
+            stmt.setString(4, ad.getPrice());
+
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -57,7 +60,8 @@ public class MySQLAdsDao implements Ads {
             rs.getLong("id"),
             rs.getLong("user_id"),
             rs.getString("title"),
-            rs.getString("description")
+            rs.getString("description"),
+            rs.getString("price")
         );
     }
 
@@ -68,16 +72,16 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
-    @Override
-    public List<Ad> searchAds(String searchInput) {
-        System.out.println("searchInput = " + searchInput);
-        PreparedStatement pst = null;
-        try {
 
-            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
-            pst = connection.prepareStatement(sql);
-            pst.setString(1,"%" + searchInput + "%");
-            ResultSet rs = pst.executeQuery();
+    @Override
+    public List<Ad> searchAds(String searchInput, String searchCat) {
+        String query = "SELECT * FROM ads JOIN ad_categories a ON ads.id = a.ad_id JOIN categories c ON a.category_id = c.id WHERE c.category = ?";
+
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, searchCat);
+            ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ads.", e);
