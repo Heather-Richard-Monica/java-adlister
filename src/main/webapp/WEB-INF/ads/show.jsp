@@ -18,7 +18,7 @@
                     <h2>${ad.title}</h2>
                 </div>
                 <div class="card-body">
-                    <p>${ad.description}</p>
+                    <p class="description">${ad.description}</p>
                 </div>
             </div>
 

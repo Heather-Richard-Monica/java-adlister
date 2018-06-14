@@ -47,5 +47,13 @@ a:link {
     color: darkgray;
 }
 
+.btn, button {
+    background-color: cornflowerblue;
+    color: black;
+}
 
+.description {
+    padding: 10px;
+    margin: 5px;
+}
 
