@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet(name= "EditAdServlet", urlPatterns = "/edit")
+public class EditAdServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
         long userId = (long)request.getSession().getAttribute("userId");
         request.setAttribute("userAds", DaoFactory.getAdsDao().findAdbyUserID(userId));
-//        System.out.println(request.getSession().getAttribute(userAds.id));
-        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+
+        request.getRequestDispatcher("/WEB-INF/ads/edit.jsp").forward(request, response);
     }
-}
+
+    }
+
