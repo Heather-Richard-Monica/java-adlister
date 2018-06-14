@@ -25,9 +25,11 @@
 //        ad.setId((long) ads.size());
 //        ads.add(ad);
 //        return ad.getId();
-//    }
+//   
+
 //    @Override
 //    public List<Ad> search(String searchQuery){return null;}
+
 //
 //    private List<Ad> generateAds() {
 //        List<Ad> ads = new ArrayList<>();
@@ -56,7 +58,6 @@
 //            "Must have strong Java skills"
 //        ));
 //        return ads;
-//
-//
+
 //    }
 //}

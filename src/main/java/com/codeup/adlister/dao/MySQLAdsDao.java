@@ -15,9 +15,10 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                    config.getUrl(),
-                    config.getUser(),
-                    config.getPassword()
+
+                config.getUrl(),
+                config.getUsername(),
+                config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -53,6 +54,35 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public List<Ad> findAdbyUserID(Long userId) {
+        String query = "SELECT * FROM ads WHERE user_id = ? ";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
+    public Ad findAdByID(Long id) {
+        String query = "SELECT * FROM ads WHERE id =?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1,id);
+            ResultSet rs =stmt.executeQuery();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding Ad",e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("id"),
@@ -71,13 +101,33 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+    @Override
+    public void deleteAd(long id) {
+
+        String query = "DELETE FROM ads Where id = ?";
+
+
     public Ad findById(long id) {
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+
 
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query);
             stmt.setLong(1, id);
+
+
+            stmt.executeUpdate();
+
+            System.out.println("Something is happening");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+
+
+    }}
+
             ResultSet rs = stmt.executeQuery();
             rs.next();
             return extractAd(rs);
@@ -123,5 +173,6 @@ public class MySQLAdsDao implements Ads {
     }
 
 }
+
 
 

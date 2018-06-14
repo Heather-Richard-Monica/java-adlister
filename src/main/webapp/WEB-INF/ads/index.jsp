@@ -44,8 +44,26 @@
         </div><!-- end of row -->
         <%--<div class="col-md-6">--%>
 
+    <c:forEach var="ad" items="${ads}">
+        <div class="col-md-6">
+            <h2>${ad.title}</h2>
+            <p>${ad.description}</p>
+            <form action="/edit" method="GET" value="${userAds.id}">
+                <button class="btn-primary">EDIT</button>
+            </form>
+
+            <form action="/delete" method="POST" value="${userAds.id}">
+                <button class="btn-danger" name="DELETE" value="${userAds.id}">
+                    DELETE
+                </button>
+            </form>
+        </div>
+    </c:forEach>
+</div>
+
             <%--<p>${ad.description}</p>--%>
         <%--</div>--%>
+
 
 </div><!-- end of container-fluid -->
 </body>
