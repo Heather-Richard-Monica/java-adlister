@@ -99,6 +99,22 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> searchAds(String searchInput) {
+        System.out.println("searchInput = " + searchInput);
+        PreparedStatement pst = null;
+        try {
+
+            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
+            pst = connection.prepareStatement(sql);
+            pst.setString(1,"%" + searchInput + "%");
+            ResultSet rs = pst.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+
+
+    @Override
     public void deleteAd(long id) {
 
         String query = "DELETE FROM ads Where id = ?";
