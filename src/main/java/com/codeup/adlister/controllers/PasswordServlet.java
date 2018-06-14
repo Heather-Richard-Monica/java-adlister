@@ -28,16 +28,20 @@ public class PasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User)request.getSession().getAttribute("user");
         String username = user.getUsername();
-        String password = request.getParameter("password");
+//        String password = request.getParameter("password");
         String oldPassword = request.getParameter("oldpassword");
-        String newPassword = request.getParameter("newpassword");
-        String confirmPassword = request.getParameter("confirm_password");
-        user = DaoFactory.getUsersDao().findByUsername(request.getParameter(username));
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+        user = DaoFactory.getUsersDao().findByUsername(username);
 
-            boolean inputHasErrors = password.isEmpty() || (!newPassword.equals(confirmPassword));
-            boolean validAttempt = Password.check(password, user.getPassword());
-            if (validAttempt && inputHasErrors) {
-                request.setAttribute("password", newPassword);
+
+        System.out.println(oldPassword);
+        System.out.println(newPassword);
+        System.out.println(confirmPassword);
+        System.out.println(user.getPassword());
+            boolean inputHasErrors = oldPassword.isEmpty() || (!newPassword.equals(confirmPassword));
+            boolean validAttempt = Password.check(oldPassword, user.getPassword());
+            if (validAttempt && !inputHasErrors) {
                 user.setPassword(newPassword);
                 DaoFactory.getUsersDao().editUser(user);
                 response.sendRedirect("/profile");

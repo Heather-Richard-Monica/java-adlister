@@ -5,8 +5,7 @@ body {
     margin-left: 90%;
     position: relative;
     margin-bottom: 50px;
-    background-color: palevioletred;
-    /*background-image: url("/img/background_05.jpg");*/
+    background-image: url("/img/background_05.jpg");
     opacity: .7;
     border-radius: 2%;
     /*-webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;*/

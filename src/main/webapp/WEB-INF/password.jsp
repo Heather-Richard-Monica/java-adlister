@@ -23,8 +23,8 @@
                 <input id="newPassword" name="newPassword" type="password" class="form-control">
             </div>
             <div class="col-md-6">
-                <label for="confirm_newpassword">Confirm your password</label>
-                <input id="confirm_newpassword" name="confirm_newpassword" type="password" class="form-control">
+                <label for="confirmPassword">Confirm your password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" class="form-control">
             </div>
             <div class="col-md-6 submit">
                 <input type="submit" class="btn btn-block mt-5 form-control">
