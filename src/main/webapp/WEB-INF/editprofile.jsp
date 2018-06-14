@@ -23,13 +23,13 @@
             <input id="email" name="email" type="text" class="form-control" value="${user.email}">
         </div>
         <div class="col-md-6 submit">
-            <input type="submit" class="btn btn-primary btn-block mt-5 form-control">
+            <input type="submit" class="btn btn-block mt-5 form-control">
         </div>
     </form>
     </div><!-- end of row -->
     <div class="row">
     <h2>Change your password</h2>
-        <a href="/password" class="btn btn-primary btn-block">Change your password</a>
+        <a href="/password" class="btn btn-block">Change your password</a>
     </div>
 
 </div>

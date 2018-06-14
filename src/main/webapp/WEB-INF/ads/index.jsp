@@ -5,22 +5,6 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css"/>
-
-    <style>
-        body {
-            background-color: dimgray;
-        }
-        .card {
-            opacity: .7;
-            border-radius: 5%;
-            -webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;
-            box-shadow: 7px 6px 20px 5px #0A0A0A;
-            height: auto;
-        }
-
-    </style>
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
@@ -29,8 +13,8 @@
         <div class="row">
                 <c:forEach var="ad" items="${ads}">
                 <div class="mb-5 col-lg-2 col-sm-6 text-center">
-                     <div class="card text-white bg-dark m-1" style="max-width: 30rem;">
-                        <div class="card-header"><h2 class="text-white"><a href="/ads/show?id=${ad.id}">${ad.title}</a></h2></div>
+                     <div class="card text-dark bg-white m-1" style="max-width: 30rem;">
+                        <div class="card-header border border-dark rounded"><h2 class="text-white"><a href="/ads/show?id=${ad.id}">${ad.title}</a></h2></div>
                         <div class="card-body">
                             <h5 class="card-title">${ad.description}</h5>
                         </div>

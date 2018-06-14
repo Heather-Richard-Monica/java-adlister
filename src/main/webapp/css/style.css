@@ -2,12 +2,16 @@ body {
     background-color: dimgray;
 }
 .card {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    background-image: url("/img/background_05.jpg");
     opacity: .7;
-    border-radius: 5%;
+    border-radius: 3%;
     -webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;
     box-shadow: 7px 6px 20px 5px #0A0A0A;
-    height: auto;
+    /*height: auto;*/
 }
+
 
 .submit {
     margin-top: 20px;
@@ -17,6 +21,31 @@ body {
     margin-top: 10px;
 }
 
+.card-text {
+    padding: 10px;
+}
+
 h1, h2 {
     text-align: center;
 }
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-buttons {
+    margin-left: 80px;
+    list-style: none;
+}
+.profile-buttons li {
+    margin: 15px;
+}
+
+a:link {
+    text-decoration: none;
+    color: darkgray;
+}
+
+
+
