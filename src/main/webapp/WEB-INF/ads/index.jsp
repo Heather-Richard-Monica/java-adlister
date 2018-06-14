@@ -13,7 +13,7 @@
         <div class="row">
                 <c:forEach var="ad" items="${ads}">
                 <div class="mb-5 col-lg-2 col-sm-6 text-center">
-                     <div class="card text-dark bg-white m-1" style="max-width: 30rem;">
+                     <div class="minimalist-card card text-dark bg-white m-1" style="max-width: 30rem;">
                         <div class="card-header border border-dark rounded"><h2 class="text-white"><a href="/ads/show?id=${ad.id}">${ad.title}</a></h2></div>
                         <div class="card-body">
                             <h5 class="card-title">${ad.description}</h5>

@@ -10,11 +10,11 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container-fluid bg-dark">
-    <h1>Here is your Add!</h1>
+    <h1>Here is your Ad!</h1>
 
         <div class="col-md-6 ">
             <div class="card">
-                <div class="card-header border-bottom">
+                <div class="minimalist-card card-header border-bottom">
                     <h2>${ad.title}</h2>
                 </div>
                 <div class="card-body">

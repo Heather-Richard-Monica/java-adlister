@@ -1,14 +1,16 @@
 body {
     background-image: url("/img/background_05.jpg");
 }
-.card {
-    margin-left: 50px;
+.minimalist-card {
+    margin-left: 90%;
+    position: relative;
     margin-bottom: 50px;
-    background-image: url("/img/background_05.jpg");
+    background-color: palevioletred;
+    /*background-image: url("/img/background_05.jpg");*/
     opacity: .7;
     border-radius: 2%;
-    -webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;
-    box-shadow: 7px 6px 20px 5px #0A0A0A;
+    /*-webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;*/
+    /*box-shadow: 7px 6px 20px 5px #0A0A0A;*/
     /*height: auto;*/
 }
 
@@ -52,6 +54,9 @@ a:visited {
 }
 
 button, .btn {
+    position:absolute;
+    left: 45%;
+    top: 450px;
     background-color: transparent;
     color: #0A0A0A;
     opacity: .9;

@@ -15,19 +15,19 @@
         <form action="/password" method="post">
             <input type="hidden" value="${user.id}" name="id">
             <div class="col-md-6">
-                <label for="currentpassword">Put your current password</label>
-                <input id="currentpassword" name="currentpassword" class="form-control" type="password">
+                <label for="oldpassword">Put your current password</label>
+                <input id="oldpassword" name="oldpassword" class="form-control" type="password">
             </div>
             <div class="col-md-6 mb-5">
                 <label for="newPassword">Put your new password</label>
                 <input id="newPassword" name="newPassword" type="password" class="form-control">
             </div>
             <div class="col-md-6">
-                <label for="password">Confirm your password</label>
-                <input id="password" name="password" type="password" class="form-control">
+                <label for="confirm_newpassword">Confirm your password</label>
+                <input id="confirm_newpassword" name="confirm_newpassword" type="password" class="form-control">
             </div>
             <div class="col-md-6 submit">
-                <input type="submit" name="newpassword" class="btn btn-block mt-5 form-control">
+                <input type="submit" class="btn btn-block mt-5 form-control">
             </div>
         </form>
     </div><!-- end of row -->

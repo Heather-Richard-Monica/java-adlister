@@ -28,13 +28,17 @@ public class PasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User)request.getSession().getAttribute("user");
         String username = user.getUsername();
-        String password = user.getPassword();
+        String password = request.getParameter("password");
+        String oldPassword = request.getParameter("oldpassword");
+        String newPassword = request.getParameter("newpassword");
+        String confirmPassword = request.getParameter("confirm_password");
         user = DaoFactory.getUsersDao().findByUsername(request.getParameter(username));
-        String newpassword = request.getParameter("newpassword");
 
+            boolean inputHasErrors = password.isEmpty() || (!newPassword.equals(confirmPassword));
             boolean validAttempt = Password.check(password, user.getPassword());
-            if (validAttempt) {
-                request.getSession().setAttribute("password", newpassword);
+            if (validAttempt && inputHasErrors) {
+                request.setAttribute("password", newPassword);
+                user.setPassword(newPassword);
                 DaoFactory.getUsersDao().editUser(user);
                 response.sendRedirect("/profile");
             } else {
