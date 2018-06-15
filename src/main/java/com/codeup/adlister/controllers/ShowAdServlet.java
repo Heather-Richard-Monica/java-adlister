@@ -13,21 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "controllers.ShowAdServlet", urlPatterns = "/ads/show")
-public class ShowAdServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login");
-            return;
+    @WebServlet(name = "controllers.ShowAdServlet", urlPatterns = "/ads/show")
+    public class ShowAdServlet extends HttpServlet {
+
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            if (request.getSession().getAttribute("user") == null) {
+                response.sendRedirect("/login");
+                return;
+            }
+
+            long id = Long.parseLong(request.getParameter("id"));
+            Ad ad = DaoFactory.getAdsDao().findById(id);
+            request.setAttribute("ad", ad);
+            request.getRequestDispatcher("/WEB-INF/ads/show.jsp").forward(request, response);
+
         }
 
-        long id = Long.parseLong(request.getParameter("id"));
-        Ad ad = DaoFactory.getAdsDao().findById(id);
-        request.setAttribute("ad", ad);
-        request.getRequestDispatcher("/WEB-INF/ads/show.jsp").forward(request, response);
 
     }
-
-
-}
