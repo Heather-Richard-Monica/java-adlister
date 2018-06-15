@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
     @WebServlet(name = "controllers.EditAdServlet", urlPatterns = "/ads/edit")
     public class EditAdServlet extends HttpServlet{
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +35,8 @@ import java.io.IOException;
             DaoFactory.getAdsDao().editAd(ad);
             response.sendRedirect("/ads");
 
+
         }
 
+}
 
-    }

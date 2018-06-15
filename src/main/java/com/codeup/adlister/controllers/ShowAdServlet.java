@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+
     @WebServlet(name = "controllers.ShowAdServlet", urlPatterns = "/ads/show")
     public class ShowAdServlet extends HttpServlet {
 

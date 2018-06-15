@@ -11,7 +11,6 @@
 
 <div class="container-fluid bg-dark">
     <h1>Here is your Ad!</h1>
-
         <div class="col-md-6 ">
             <div class="card">
                 <div class="minimalist-card card-header border-bottom">
@@ -21,8 +20,6 @@
                     <p class="description">${ad.description}</p>
                 </div>
             </div>
-
-
         </div>
         <div class="col-sm-4">
             <form action="/ads/edit" method="GET" name="EDIT">
@@ -30,8 +27,7 @@
             <button id="adDeletion" class="btn btn-block">Delete</button>
             </form>
         </div>
-
 </div>
-
 </body>
 </html>
+

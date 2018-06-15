@@ -24,20 +24,6 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    @Override
-    public List<Ad> findAdbyUserID(Long userId) {
-        String query = "SELECT * FROM ads WHERE user_id = ? ";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-
-            stmt.setLong(1, userId);
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error finding a user by username", e);
-        }
-    }
 
     @Override
     public List<Ad> all() {
@@ -68,6 +54,35 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public List<Ad> findAdbyUserID(Long userId) {
+        String query = "SELECT * FROM ads WHERE user_id = ? ";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
+    public Ad findAdByID(Long id) {
+        String query = "SELECT * FROM ads WHERE id =?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1,id);
+            ResultSet rs =stmt.executeQuery();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding Ad",e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("id"),
@@ -86,6 +101,40 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+    @Override
+    public List<Ad> searchAds(String searchInput) {
+        System.out.println("searchInput = " + searchInput);
+        PreparedStatement pst = null;
+        try {
+
+            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
+            pst = connection.prepareStatement(sql);
+            pst.setString(1,"%" + searchInput + "%");
+            ResultSet rs = pst.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+
+
+    @Override
+    public void deleteAd(long id) {
+
+        String query = "DELETE FROM ads Where id = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+
+            stmt.executeUpdate();
+
+            System.out.println("Something is happening");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
     public Ad findById(long id) {
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
 
@@ -102,7 +151,6 @@ public class MySQLAdsDao implements Ads {
         }
         return null;
     }
-
     public Ad editAd(Ad ad) {
         String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt = null;
@@ -119,22 +167,6 @@ public class MySQLAdsDao implements Ads {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public List<Ad> searchAds(String searchInput) {
-        System.out.println("searchInput = " + searchInput);
-        PreparedStatement pst = null;
-        try {
-
-            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
-            pst = connection.prepareStatement(sql);
-            pst.setString(1,"%" + searchInput + "%");
-            ResultSet rs = pst.executeQuery();
-            return createAdsFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving ads.", e);
-        }
     }
 
 }
