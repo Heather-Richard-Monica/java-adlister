@@ -36,6 +36,7 @@ public class Ad {
         return userId;
     }
 
+
     public void setUserId(long userId) {
         this.userId = userId;
     }

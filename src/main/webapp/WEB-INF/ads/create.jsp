@@ -8,6 +8,7 @@
 <body>
     <div class="container">
         <h1>Create a new Ad</h1>
+        <h2>${message}</h2>
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title</label>
