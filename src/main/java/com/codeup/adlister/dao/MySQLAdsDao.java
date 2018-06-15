@@ -109,15 +109,15 @@ public class MySQLAdsDao implements Ads {
 
             String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
             pst = connection.prepareStatement(sql);
-            pst.setString(1,"%" + searchInput + "%");
+            pst.setString(1, "%" + searchInput + "%");
             ResultSet rs = pst.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ads.", e);
         }
+    }
 
 
-    @Override
     public void deleteAd(long id) {
 
         String query = "DELETE FROM ads Where id = ?";
@@ -151,6 +151,7 @@ public class MySQLAdsDao implements Ads {
         }
         return null;
     }
+
     public Ad editAd(Ad ad) {
         String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt = null;
@@ -170,5 +171,6 @@ public class MySQLAdsDao implements Ads {
     }
 
 }
+
 
 
