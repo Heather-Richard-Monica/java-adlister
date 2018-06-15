@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.mysql.cj.api.mysqla.result.Resultset;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -14,15 +15,16 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
 
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
         }
     }
+
 
     @Override
     public List<Ad> all() {
@@ -102,6 +104,7 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
+
     @Override
     public List<Ad> searchAds(String searchInput, String searchCat) {
         String query = "SELECT * FROM ads JOIN ad_categories a ON ads.id = a.ad_id JOIN categories c ON a.category_id = c.id WHERE c.category = ?";
@@ -111,13 +114,19 @@ public class MySQLAdsDao implements Ads {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, searchCat);
             ResultSet rs = stmt.executeQuery();
+
+            String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
+            pst = connection.prepareStatement(sql);
+            pst.setString(1, "%" + searchInput + "%");
+            ResultSet rs = pst.executeQuery();
+
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ads.", e);
         }
+    }
 
 
-    @Override
     public void deleteAd(long id) {
 
         String query = "DELETE FROM ads Where id = ?";
@@ -151,6 +160,7 @@ public class MySQLAdsDao implements Ads {
         }
         return null;
     }
+
     public Ad editAd(Ad ad) {
         String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
         PreparedStatement stmt = null;
@@ -170,3 +180,6 @@ public class MySQLAdsDao implements Ads {
     }
 
 }
+
+
+

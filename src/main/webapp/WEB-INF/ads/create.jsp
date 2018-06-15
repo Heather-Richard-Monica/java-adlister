@@ -6,6 +6,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
         <h1>Create a new Ad</h1>
         <h2>${message}</h2>
@@ -59,7 +60,10 @@
             </div>
 
 
-            <input type="submit" class="btn btn-block btn-primary">
+          
+
+            <input type="submit" class="submit btn btn-block">
+
         </form>
     </div>
 </body>

@@ -21,7 +21,7 @@
             <label for="description">Edit your description</label>
             <input id="description" name="description" type="text" class="form-control" value="${ad.description}">
         </div>
-        <input type="submit" class="btn btn-primary btn-block">
+        <input type="submit" class="submit btn btn-block">
     </form>
 </div>
 </body>
