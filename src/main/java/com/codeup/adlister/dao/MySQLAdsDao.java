@@ -75,13 +75,28 @@ public class MySQLAdsDao implements Ads {
 
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setLong(1,id);
-            ResultSet rs =stmt.executeQuery();
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
             return extractAd(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding Ad",e);
+            throw new RuntimeException("Error finding Ad", e);
         }
     }
+
+//    @Override
+//    public Ad findById(long id) {
+//        return null;
+//    }
+
+//    @Override
+//    public Ad editAd(Ad ad) {
+//        return null;
+//    }
+
+//    @Override
+//    public void deleteAd(long id) {
+//
+//    }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
@@ -109,66 +124,68 @@ public class MySQLAdsDao implements Ads {
 
             String sql = "SELECT *  FROM ads WHERE title LIKE ? ";
             pst = connection.prepareStatement(sql);
-            pst.setString(1,"%" + searchInput + "%");
+            pst.setString(1, "%" + searchInput + "%");
             ResultSet rs = pst.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ads.", e);
         }
 
+    }
+        @Override
+        public void deleteAd ( long id){
 
-    @Override
-    public void deleteAd(long id) {
+            String query = "DELETE FROM ads WHERE id = ?";
+            PreparedStatement stmt = null;
+            try {
+                stmt = connection.prepareStatement(query);
+                stmt.setLong(1, id);
 
-        String query = "DELETE FROM ads Where id = ?";
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement(query);
-            stmt.setLong(1, id);
+                stmt.executeUpdate();
 
-            stmt.executeUpdate();
+                System.out.println("Something is happening");
 
-            System.out.println("Something is happening");
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            } catch (SQLException e) {
+                throw new RuntimeException("Error retrieving all ads.", e);
+            }
         }
+
+        public Ad findById ( long id){
+            String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+
+            PreparedStatement stmt = null;
+            try {
+                stmt = connection.prepareStatement(query);
+                stmt.setLong(1, id);
+                ResultSet rs = stmt.executeQuery();
+                rs.next();
+                return extractAd(rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+            return null;
+        }
+        public Ad editAd (Ad ad){
+            String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
+            PreparedStatement stmt = null;
+            try {
+                stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                stmt.setString(1, ad.getTitle());
+                stmt.setString(2, ad.getDescription());
+                stmt.setLong(3, ad.getId());
+                stmt.executeUpdate();
+                ResultSet rs = stmt.getGeneratedKeys();
+                rs.next();
+                return extractAd(rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
     }
 
-    public Ad findById(long id) {
-        String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
-
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement(query);
-            stmt.setLong(1, id);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return extractAd(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return null;
-    }
-    public Ad editAd(Ad ad) {
-        String query = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, ad.getTitle());
-            stmt.setString(2, ad.getDescription());
-            stmt.setLong(3, ad.getId());
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return extractAd(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-}
 
 
