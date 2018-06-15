@@ -25,6 +25,21 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> findAdbyUserID(Long userId) {
+        String query = "SELECT * FROM ads WHERE user_id = ? ";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    @Override
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try {

@@ -1,0 +1,100 @@
+body {
+    background-image: url("/img/background_05.jpg");
+}
+.minimalist-profile {
+    width: 90%;
+    margin-left: 40%;
+    position: relative;
+    margin-bottom: 50px;
+    background-image: url("/img/background_05.jpg");
+    opacity: .7;
+    border-radius: 2%;
+    /*margin: 0;*/
+    /*position: relative;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-right: -50%;*/
+    /*transform: translate(-50%, -50%)*/
+    /*-webkit-box-shadow: 7px 6px 20px 5px #0A0A0A;*/
+    /*box-shadow: 7px 6px 20px 5px #0A0A0A;*/
+    /*height: auto;*/
+}
+
+.navigation {
+    background-color: #0A0A0A;
+}
+
+.minimalist-card {
+    border-bottom: solid 3px black;
+    margin:50px;
+}
+
+.for-ads {
+    text-align: center;
+}
+
+.submit {
+    margin-top: 20px;
+    border-style: none;
+}
+
+.card-img-top {
+    margin-top: 10px;
+}
+
+.card-text {
+    padding: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-buttons {
+    margin-left: 80px;
+    list-style: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #999;
+}
+
+button, .btn {
+    background-color: transparent;
+    color: #0A0A0A;
+    opacity: .9;
+    border-style: none;
+    border: transparent;
+
+}
+
+.profile-buttons {
+    list-style: none;
+    position:absolute;
+    left: 30%;
+    top: 450px;
+    background-color: transparent;
+    color: #0A0A0A;
+    opacity: .9;
+}
+
+.profile-buttons li {
+    /*float: left;*/
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 2px black;
+}
+
+.col-buttons {
+    /*width: 90%;*/
+}
