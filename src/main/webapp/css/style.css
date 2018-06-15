@@ -12,6 +12,9 @@ body {
     /*height: auto;*/
 }
 
+.navigation {
+    background-color: cornflowerblue;
+}
 
 .submit {
     margin-top: 20px;
@@ -55,5 +58,9 @@ a:link {
 .description {
     padding: 10px;
     margin: 5px;
+}
+
+textarea {
+    margin-bottom: 50px;
 }
 

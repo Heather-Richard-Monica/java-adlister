@@ -12,6 +12,9 @@ body {
     /*height: auto;*/
 }
 
+.navigation {
+    background-color: lightyellow;
+}
 
 .submit {
     margin-top: 20px;

@@ -22,22 +22,19 @@
                     </div><!-- end of cardbody -->
                 </div>
             </div>
-            <div class="col col-buttons">
+            <div class="col-12 col-buttons">
             <ul class="profile-buttons d-table">
                 <li class="float-left"><button id="profileEdition" class="btn btn-lg" type="submit"><a href="/editprofile?=${user.id}">Edit your profile</a></button></li>
                 <li class="float-left"><button id="createAd" class="btn btn-lg" type="submit"><a href="/ads/create"> Create an Ad</a></button></li>
             </ul>
             </div>
-        <div>
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-        </div>
+        <div class="col-12" style="height: 200px"></div>
         </div>
     </div>
-    <div class="row" style="margin: 0">
+    <div class="row for-ads" style="margin: 0">
         <c:forEach var="ad" items="${ads}">
             <div class="mb-5 col-lg-2 col-sm-6 text-center">
-                <div class="minimalist-card card text-dark bg-white m-1" style="max-width: 30rem;">
+                <div class="minimalist-card card text-dark bg-white m-1 m-5" style="max-width: 30rem;">
                     hello world
                     <div class="card-header border border-dark rounded"><h2 class="text-white"><a href="/ads/show?id=${ad.id}">${ad.title}</a></h2></div>
                     <div class="card-body">

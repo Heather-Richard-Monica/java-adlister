@@ -19,7 +19,7 @@
         <div class="col-md-6">
             <input type="hidden" value="${ad.id}" name="id">
             <label for="description">Edit your description</label>
-                <input id="description" name="description" type="text" class="form-control" value="${ad.description}">
+            <input id="description" name="description" type="text" class="form-control" value="${ad.description}">
         </div>
         <input type="submit" class="submit btn btn-block">
     </form>

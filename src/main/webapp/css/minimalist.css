@@ -20,8 +20,17 @@ body {
     /*height: auto;*/
 }
 
+.navigation {
+    background-color: #0A0A0A;
+}
+
 .minimalist-card {
     border-bottom: solid 3px black;
+    margin:50px;
+}
+
+.for-ads {
+    text-align: center;
 }
 
 .submit {
