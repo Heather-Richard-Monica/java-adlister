@@ -19,41 +19,20 @@ public class EditAdServlet extends HttpServlet{
                         return;
                 }
 
-//                long userId =(long)request.getSession().getAttribute("userId");
-//                String Xid = request.getParameter("id");
-//                long id = Long.parseLong(Xid);
-//                long id = Long.parseLong(request.getParameter("id"));
-//            Long id = Long.parseLong(request.getParameter("DELETE"));
-//            DaoFactory.getAdsDao().deleteAd(id);
-
-                Long id = Long.parseLong(request.getParameter("id"));
+                long id = Long.parseLong(request.getParameter("id"));
                 Ad ad = DaoFactory.getAdsDao().findById(id);
-                DaoFactory.getAdsDao().findById(id);
                 request.setAttribute("ad", ad);
                 request.getRequestDispatcher("/WEB-INF/ads/edit.jsp").forward(request, response);
         }
 
-//    long id = Long.parseLong(request.getParameter("id"));
-//    Ad ad = DaoFactory.getAdsDao().findById(id);
-//        request.setAttribute("ad", ad);
-//        request.getRequestDispatcher("/WEB-INF/ads/show.jsp").forward(request, response);
-
-
-
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
                 User user = (User) request.getSession().getAttribute("user");
-                String Xid = request.getParameter("id");
-                long id = Long.parseLong(Xid);
-                Ad ad = DaoFactory.getAdsDao().findById(id);
+                Ad ad = DaoFactory.getAdsDao().findById(Long.parseLong(request.getParameter("id")));
                 ad.setTitle(request.getParameter("title"));
                 ad.setDescription(request.getParameter("description"));
 
                 DaoFactory.getAdsDao().editAd(ad);
                 response.sendRedirect("/ads");
-
-
-
 
         }
 
