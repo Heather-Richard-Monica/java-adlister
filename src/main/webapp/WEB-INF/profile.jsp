@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");%>
+
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
